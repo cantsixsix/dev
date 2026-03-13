@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Canal de ofertas e promoções: ofertas diárias, cupons exclusivos e 100% grátis." />
+  <title>Canal de Ofertas • Landing Page</title>
+
+  <!-- Fonts (leve e rápida) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Ícones (CDN) -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    integrity="sha512-Avb2QiuDEEvB4bZJYdftzH8m0D3zQJm8w3kZpV3Sx9kXg8b8m5Zx7b4o6zqvTz+H2q1xQmZ1XW8u4ZJQmQ=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
+  <style>
+    :root{
+      --bg: #FAFAFA;
+      --text: #1A1A1A;
+      --muted: rgba(26,26,26,.68);
+      --muted-2: rgba(26,26,26,.52);
+      --card: #FFFFFF;
+      --border: rgba(26,26,26,.10);
+      --shadow: 0 12px 30px rgba(0,0,0,.06);
+      --shadow-soft: 0 10px 22px rgba(0,0,0,.05);
+      --radius: 18px;
+      --radius-sm: 14px;
+
+      /* Acento suave (azul-acinzentado) */
+      --accent: #5C7CFA;
+      --accent-2: #2F5DCC;
+
+      /* Cores de plataformas (só nos ícones / detalhes) */
+      --wa: #25D366;
+      --tg: #229ED9;
+      --dc: #5865F2;
+      --ig-1: #F58529;
+      --ig-2: #DD2A7B;
+      --ig-3: #8134AF;
+      --ig-4: #515BD4;
+
+      --maxw: 1040px;
+    }
+
+    *{ box-sizing: border-box; }
+    html, body{ height: 100%; }
+    body{
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(1200px 600px at 30% 10%, rgba(92,124,250,.08), transparent 60%),
+                  radial-gradient(900px 520px at 80% 0%, rgba(92,124,250,.05), transparent 60%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.45;
+    }
+
+    a{ color: inherit; text-decoration: none; }
+    .container{
+      width: min(var(--maxw), calc(100% - 2rem));
+      margin: 0 auto;
+      padding: 28px 0 40px;
+    }
+
+    /* Acessibilidade: foco visível */
+    :focus-visible{
+      outline: 3px solid rgba(92,124,250,.45);
+      outline-offset: 3px;
+      border-radius: 12px;
+    }
+
+    /* Top spacing */
+    header{
+      display: flex;
+      justify-content: center;
+      padding-top: 8px;
+    }
+
+    /* HERO */
+    .hero{
+      text-align: center;
+      padding: 34px 0 18px;
+    }
+
+    .logo-wrap{
+      width: 112px;
+      height: 112px;
+      margin: 0 auto 16px;
+      border-radius: 28px;
+      background: linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.7));
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(26,26,26,.06);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+    .logo-wrap svg{
+      width: 74px;
+      height: 74px;
+      display: block;
+    }
+
+    h1{
+      margin: 0;
+      font-size: clamp(1.6rem, 2.8vw, 2.4rem);
+      letter-spacing: -0.02em;
+      font-weight: 700;
+    }
+    .tagline{
+      margin: 10px auto 0;
+      font-size: clamp(1rem, 1.6vw, 1.1rem);
+      color: var(--muted);
+      max-width: 42ch;
+    }
+    .desc{
+      margin: 10px auto 0;
+      font-size: .98rem;
+      color: var(--muted-2);
+      max-width: 58ch;
+    }
+
+    /* MAIN CARD */
+    .panel{
+      margin: 22px auto 0;
+      padding: 18px;
+      background: rgba(255,255,255,.75);
+      border: 1px solid rgba(26,26,26,.06);
+      border-radius: calc(var(--radius) + 6px);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(8px);
+    }
+
+    /* LINKS GRID */
+    .links{
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    @media (min-width: 720px){
+      .panel{ padding: 20px; }
+      .links{
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+    }
+
+    .link-card{
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 14px;
+      border-radius: var(--radius);
+      background: var(--card);
+      border: 1px solid rgba(26,26,26,.08);
+      box-shadow: 0 10px 20px rgba(0,0,0,.04);
+      transform: translateY(0);
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+      min-height: 64px;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .link-card:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 14px 26px rgba(0,0,0,.06);
+      border-color: rgba(92,124,250,.28);
+    }
+    .link-card:active{
+      transform: translateY(0);
+      box-shadow: 0 10px 18px rgba(0,0,0,.05);
+    }
+
+    .platform-icon{
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      background: rgba(26,26,26,.04);
+      border: 1px solid rgba(26,26,26,.06);
+    }
+    .platform-icon i{ font-size: 1.2rem; }
+
+    .link-text{
+      display: grid;
+      gap: 2px;
+      text-align: left;
+      flex: 1;
+      min-width: 0;
+    }
+    .link-title{
+      font-weight: 650;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .link-sub{
+      font-size: .92rem;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .chev{
+      color: rgba(26,26,26,.35);
+      flex: 0 0 auto;
+      margin-left: 6px;
+    }
+
+    /* Platform accents */
+    .wa .platform-icon i{ color: var(--wa); }
+    .tg .platform-icon i{ color: var(--tg); }
+    .dc .platform-icon i{ color: var(--dc); }
+    .ig .platform-icon{
+      background: linear-gradient(135deg, rgba(245,133,41,.14), rgba(221,42,123,.14), rgba(81,91,212,.14));
+      border-color: rgba(26,26,26,.06);
+    }
+    .ig .platform-icon i{
+      background: linear-gradient(45deg, var(--ig-1), var(--ig-2), var(--ig-3), var(--ig-4));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    /* Benefits */
+    .benefits{
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    @media (min-width: 720px){
+      .benefits{
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+    .benefit{
+      padding: 12px 12px;
+      border-radius: var(--radius-sm);
+      background: rgba(255,255,255,.78);
+      border: 1px solid rgba(26,26,26,.06);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 54px;
+    }
+    .benefit i{
+      width: 34px; height: 34px;
+      display: grid; place-items: center;
+      border-radius: 12px;
+      background: rgba(92,124,250,.12);
+      color: var(--accent-2);
+      border: 1px solid rgba(92,124,250,.18);
+      flex: 0 0 auto;
+    }
+    .benefit span{
+      font-size: .94rem;
+      color: rgba(26,26,26,.80);
+      font-weight: 500;
+      letter-spacing: -0.01em;
+    }
+
+    /* Footer */
+    footer{
+      margin-top: 18px;
+      padding: 18px 6px 0;
+      display: grid;
+      gap: 10px;
+      justify-items: center;
+      color: var(--muted-2);
+      font-size: .92rem;
+    }
+    .footer-logo{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: rgba(26,26,26,.75);
+      font-weight: 650;
+    }
+    .footer-logo .mini{
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      background: rgba(255,255,255,.9);
+      border: 1px solid rgba(26,26,26,.08);
+      box-shadow: 0 10px 18px rgba(0,0,0,.05);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+    .footer-social{
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .social-btn{
+      width: 38px; height: 38px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: rgba(255,255,255,.85);
+      border: 1px solid rgba(26,26,26,.08);
+      box-shadow: 0 10px 18px rgba(0,0,0,.04);
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+    .social-btn:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 14px 22px rgba(0,0,0,.06);
+      border-color: rgba(92,124,250,.28);
+    }
+
+    /* Fade-in */
+    .reveal{
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity .55s ease, transform .55s ease;
+    }
+    .reveal.show{
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      .reveal{ opacity: 1; transform: none; transition: none; }
+      .link-card, .social-btn{ transition: none; }
+    }
+
+    /* Small helper line under panel title (optional) */
+    .panel-top{
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+    .panel-top h2{
+      margin: 0;
+      font-size: 1.05rem;
+      letter-spacing: -0.01em;
+    }
+    .hint{
+      margin: 0;
+      font-size: .92rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header></header>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero reveal" aria-labelledby="titulo-canal">
+        <div class="logo-wrap" aria-hidden="true">
+          <!-- Placeholder SVG estilizado (troque pelo seu logo) -->
+          <svg viewBox="0 0 120 120" role="img" aria-label="Logo do canal (placeholder)">
+            <defs>
+              <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#5C7CFA" stop-opacity="0.9"/>
+                <stop offset="1" stop-color="#5C7CFA" stop-opacity="0.25"/>
+              </linearGradient>
+            </defs>
+            <rect x="18" y="18" width="84" height="84" rx="24" fill="url(#g)"></rect>
+            <path d="M38 62c0-12 10-22 22-22h22v10H60c-7 0-12 5-12 12s5 12 12 12h10v10H60c-12 0-22-10-22-22Z" fill="rgba(255,255,255,.92)"/>
+            <circle cx="82" cy="78" r="6" fill="rgba(255,255,255,.92)"/>
+          </svg>
+        </div>
+
+        <h1 id="titulo-canal">Nome do Canal</h1>
+        <p class="tagline">As melhores ofertas, direto no seu bolso.</p>
+        <p class="desc">Entre no canal e receba promoções selecionadas, cupons exclusivos e alertas rápidos — sem enrolação.</p>
+      </section>
+
+      <!-- LINKS -->
+      <section class="panel reveal" aria-label="Links principais do canal">
+        <div class="panel-top">
+          <h2>Entre agora</h2>
+          <p class="hint">Toque em uma plataforma para acessar.</p>
+        </div>
+
+        <div class="links" role="list">
+          <!-- WhatsApp -->
+          <a class="link-card wa" role="listitem"
+             href="https://example.com/whatsapp" target="_blank" rel="noopener noreferrer"
+             aria-label="Entrar no WhatsApp (abre em nova guia)">
+            <div class="platform-icon" aria-hidden="true">
+              <i class="fa-brands fa-whatsapp"></i>
+            </div>
+            <div class="link-text">
+              <div class="link-title">Entrar no WhatsApp</div>
+              <div class="link-sub">Receba ofertas e cupons em primeira mão</div>
+            </div>
+            <i class="fa-solid fa-arrow-right chev" aria-hidden="true"></i>
+          </a>
+
+          <!-- Telegram -->
+          <a class="link-card tg" role="listitem"
+             href="https://example.com/telegram" target="_blank" rel="noopener noreferrer"
+             aria-label="Entrar no Telegram (abre em nova guia)">
+            <div class="platform-icon" aria-hidden="true">
+              <i class="fa-brands fa-telegram"></i>
+            </div>
+            <div class="link-text">
+              <div class="link-title">Entrar no Telegram</div>
+              <div class="link-sub">Canal leve, organizado e rápido</div>
+            </div>
+            <i class="fa-solid fa-arrow-right chev" aria-hidden="true"></i>
+          </a>
+
+          <!-- Discord -->
+          <a class="link-card dc" role="listitem"
+             href="https://example.com/discord" target="_blank" rel="noopener noreferrer"
+             aria-label="Entrar no Discord (abre em nova guia)">
+            <div class="platform-icon" aria-hidden="true">
+              <i class="fa-brands fa-discord"></i>
+            </div>
+            <div class="link-text">
+              <div class="link-title">Entrar no Discord</div>
+              <div class="link-sub">Comunidade e alertas por categorias</div>
+            </div>
+            <i class="fa-solid fa-arrow-right chev" aria-hidden="true"></i>
+          </a>
+
+          <!-- Instagram -->
+          <a class="link-card ig" role="listitem"
+             href="https://example.com/instagram" target="_blank" rel="noopener noreferrer"
+             aria-label="Seguir no Instagram (abre em nova guia)">
+            <div class="platform-icon" aria-hidden="true">
+              <i class="fa-brands fa-instagram"></i>
+            </div>
+            <div class="link-text">
+              <div class="link-title">Seguir no Instagram</div>
+              <div class="link-sub">Reels, stories e destaques de ofertas</div>
+            </div>
+            <i class="fa-solid fa-arrow-right chev" aria-hidden="true"></i>
+          </a>
+        </div>
+
+        <!-- BENEFÍCIOS -->
+        <div class="benefits" aria-label="Benefícios do canal">
+          <div class="benefit">
+            <i class="fa-solid fa-bolt" aria-hidden="true"></i>
+            <span>Ofertas diárias</span>
+          </div>
+          <div class="benefit">
+            <i class="fa-solid fa-ticket" aria-hidden="true"></i>
+            <span>Cupons exclusivos</span>
+          </div>
+          <div class="benefit">
+            <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+            <span>Sem spam</span>
+          </div>
+          <div class="benefit">
+            <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+            <span>100% grátis</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer class="reveal" aria-label="Rodapé">
+        <div class="footer-logo">
+          <div class="mini" aria-hidden="true">
+            <!-- Mini logo placeholder -->
+            <svg viewBox="0 0 120 120" width="22" height="22" aria-hidden="true">
+              <defs>
+                <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#5C7CFA" stop-opacity="0.9"/>
+                  <stop offset="1" stop-color="#5C7CFA" stop-opacity="0.25"/>
+                </linearGradient>
+              </defs>
+              <rect x="18" y="18" width="84" height="84" rx="24" fill="url(#g2)"></rect>
+              <path d="M38 62c0-12 10-22 22-22h22v10H60c-7 0-12 5-12 12s5 12 12 12h10v10H60c-12 0-22-10-22-22Z" fill="rgba(255,255,255,.92)"/>
+            </svg>
+          </div>
+          <span>Nome do Canal</span>
+        </div>
+
+        <div class="footer-social" aria-label="Links sociais">
+          <a class="social-btn" href="https://example.com/whatsapp" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+            <i class="fa-brands fa-whatsapp" style="color: var(--wa)"></i>
+          </a>
+          <a class="social-btn" href="https://example.com/telegram" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
+            <i class="fa-brands fa-telegram" style="color: var(--tg)"></i>
+          </a>
+          <a class="social-btn" href="https://example.com/discord" target="_blank" rel="noopener noreferrer" aria-label="Discord">
+            <i class="fa-brands fa-discord" style="color: var(--dc)"></i>
+          </a>
+          <a class="social-btn" href="https://example.com/instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+        </div>
+
+        <div aria-label="Copyright">
+          © <span id="year">2025</span> <span id="channelName">Nome do Canal</span> • Todos os direitos reservados
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    // ===== Ajustes rápidos (edite aqui) =====
+    const CONFIG = {
+      channelName: "Nome do Canal",
+      links: {
+        whatsapp: "https://example.com/whatsapp",
+        telegram: "https://example.com/telegram",
+        discord: "https://example.com/discord",
+        instagram: "https://example.com/instagram",
+      },
+      year: 2025,
+    };
+
+    // Preenche nome/ano/links sem depender do HTML
+    (function hydrate(){
+      const $ = (sel) => document.querySelector(sel);
+
+      const yearEl = $("#year");
+      const nameEl = $("#channelName");
+      if (yearEl) yearEl.textContent = String(CONFIG.year);
+      if (nameEl) nameEl.textContent = CONFIG.channelName;
+
+      // Atualiza título e hero H1
+      document.title = `${CONFIG.channelName} • Landing Page`;
+      const h1 = document.getElementById("titulo-canal");
+      if (h1) h1.textContent = CONFIG.channelName;
+
+      // Atualiza todos os links example.com
+      const map = new Map([
+        ["whatsapp", CONFIG.links.whatsapp],
+        ["telegram", CONFIG.links.telegram],
+        ["discord", CONFIG.links.discord],
+        ["instagram", CONFIG.links.instagram],
+      ]);
+
+      document.querySelectorAll('a[href^="https://example.com/"]').forEach((a) => {
+        const href = a.getAttribute("href");
+        if (href.includes("whatsapp")) a.href = map.get("whatsapp");
+        if (href.includes("telegram")) a.href = map.get("telegram");
+        if (href.includes("discord")) a.href = map.get("discord");
+        if (href.includes("instagram")) a.href = map.get("instagram");
+      });
+    })();
+
+    // ===== Animações leves de entrada (fade-in) =====
+    (function revealOnLoad(){
+      const elements = Array.from(document.querySelectorAll(".reveal"));
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (prefersReducedMotion) {
+        elements.forEach(el => el.classList.add("show"));
+        return;
+      }
+
+      // IntersectionObserver para performance
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      elements.forEach((el, idx) => {
+        // Stagger suave: aplica pequeno delay via inline style
+        el.style.transitionDelay = `${Math.min(idx * 90, 260)}ms`;
+        io.observe(el);
+      });
+    })();
+
+    // ===== Acessibilidade extra: Enter/Espaço já funcionam em <a>, mas garantimos scroll suave =====
+    (function smooth(){
+      document.documentElement.style.scrollBehavior = "smooth";
+    })();
+  </script>
+</body>
+</html>

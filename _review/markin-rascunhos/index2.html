@@ -1,0 +1,646 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="As melhores ofertas, direto no seu bolso. Entre no nosso canal e receba promoções, cupons e achados diários." />
+  <title>Canal de Ofertas • Landing Page</title>
+
+  <!-- Font (leve) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Lucide (ícones via CDN) -->
+  <script defer src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+
+  <style>
+    :root{
+      --bg: #FAFAFA;
+      --card: #FFFFFF;
+      --text: #1A1A1A;
+      --muted: #5C5C5C;
+      --border: rgba(26,26,26,.10);
+      --shadow: 0 10px 30px rgba(26,26,26,.08);
+      --shadow-soft: 0 8px 24px rgba(26,26,26,.06);
+      --ring: rgba(79, 108, 127, .38); /* azul-acinzentado sutil */
+      --accent: #4F6C7F; /* azul-acinzentado */
+
+      --wa: #22c55e;     /* verde */
+      --tg: #3b82f6;     /* azul */
+      --dc: #5865f2;     /* blurple */
+      --ig1: #f58529;    /* gradiente instagram */
+      --ig2: #dd2a7b;
+      --ig3: #8134af;
+      --radius: 16px;
+
+      --container: 1040px;
+    }
+
+    *{ box-sizing: border-box; }
+    html, body{ height: 100%; }
+    body{
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    a{ color: inherit; text-decoration: none; }
+    .sr-only{
+      position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden;
+      clip:rect(0,0,0,0); white-space:nowrap; border:0;
+    }
+
+    .wrap{
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container{
+      width: 100%;
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 28px 18px;
+    }
+
+    /* Top subtle background accent */
+    .bg-glow{
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 340px;
+      pointer-events: none;
+      background:
+        radial-gradient(1200px 380px at 50% 0%,
+          rgba(79,108,127,.12),
+          rgba(250,250,250,0) 60%);
+    }
+
+    header{
+      position: relative;
+    }
+
+    .hero{
+      display: grid;
+      gap: 16px;
+      justify-items: center;
+      text-align: center;
+      padding-top: 14px;
+      padding-bottom: 8px;
+    }
+
+    .logo{
+      width: 88px;
+      height: 88px;
+      border-radius: 22px;
+      background: linear-gradient(180deg, rgba(79,108,127,.12), rgba(79,108,127,.05));
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-soft);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    .logo svg{
+      width: 64px;
+      height: 64px;
+    }
+
+    h1{
+      margin: 6px 0 0;
+      font-size: clamp(26px, 6vw, 40px);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    .tagline{
+      margin: 0;
+      font-size: clamp(14px, 3.7vw, 18px);
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .desc{
+      margin: 0;
+      max-width: 56ch;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.55;
+    }
+
+    .card{
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-soft);
+    }
+
+    main{
+      flex: 1;
+    }
+
+    .section{
+      margin-top: 18px;
+    }
+
+    .links{
+      padding: 16px;
+    }
+
+    .links-header{
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .links-header h2{
+      margin: 0;
+      font-size: 16px;
+      letter-spacing: -0.01em;
+    }
+
+    .hint{
+      margin: 0;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .grid{
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    @media (min-width: 760px){
+      .container{ padding: 34px 22px; }
+      .hero{ padding-top: 22px; }
+      .grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .links{ padding: 18px; }
+    }
+
+    @media (min-width: 1024px){
+      .hero{ padding-top: 26px; }
+      .links{ padding: 20px; }
+    }
+
+    .btn{
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 14px;
+      border-radius: calc(var(--radius) - 4px);
+      border: 1px solid var(--border);
+      background: #fff;
+      box-shadow: 0 1px 0 rgba(26,26,26,.02);
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+      outline: none;
+      min-height: 56px;
+      will-change: transform;
+    }
+
+    .btn:hover{
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-soft);
+      border-color: rgba(26,26,26,.16);
+    }
+
+    .btn:active{
+      transform: translateY(0px) scale(.99);
+      box-shadow: 0 6px 18px rgba(26,26,26,.06);
+    }
+
+    .btn:focus-visible{
+      box-shadow: 0 0 0 4px var(--ring), var(--shadow-soft);
+      border-color: rgba(79,108,127,.35);
+    }
+
+    .left{
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .icon{
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      border: 1px solid rgba(26,26,26,.08);
+    }
+
+    .icon i, .icon svg{ width: 20px; height: 20px; }
+    .label{
+      display: grid;
+      gap: 2px;
+      min-width: 0;
+    }
+    .label strong{
+      font-size: 14px;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .label span{
+      font-size: 12px;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .chev{
+      opacity: .65;
+      flex: 0 0 auto;
+    }
+
+    /* Platform themes */
+    .wa .icon{ background: rgba(34,197,94,.12); }
+    .wa .icon svg{ color: var(--wa); }
+
+    .tg .icon{ background: rgba(59,130,246,.12); }
+    .tg .icon svg{ color: var(--tg); }
+
+    .dc .icon{ background: rgba(88,101,242,.12); }
+    .dc .icon svg{ color: var(--dc); }
+
+    .ig .icon{
+      background: linear-gradient(135deg, rgba(245,133,41,.16), rgba(221,42,123,.16), rgba(129,52,175,.16));
+    }
+    .ig .icon svg{ color: #C026D3; } /* tom magenta suave */
+
+    /* Benefits */
+    .benefits{
+      padding: 16px;
+      margin-top: 14px;
+    }
+
+    .benefits h3{
+      margin: 0 0 10px;
+      font-size: 15px;
+      letter-spacing: -0.01em;
+    }
+
+    .benefit-grid{
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    @media (min-width: 760px){
+      .benefit-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    .benefit{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px;
+      border-radius: calc(var(--radius) - 6px);
+      border: 1px solid rgba(26,26,26,.08);
+      background: rgba(250,250,250,.35);
+    }
+    .benefit .b-ico{
+      width: 36px; height: 36px;
+      border-radius: 12px;
+      display: grid; place-items: center;
+      background: rgba(79,108,127,.10);
+      border: 1px solid rgba(79,108,127,.16);
+      flex: 0 0 auto;
+    }
+    .benefit .b-ico svg{ width: 18px; height: 18px; color: var(--accent); }
+    .benefit p{
+      margin: 0;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.35;
+    }
+    .benefit p strong{
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    footer{
+      margin-top: 20px;
+      padding: 18px 0 10px;
+      color: var(--muted);
+    }
+
+    .footer-inner{
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+      text-align: center;
+    }
+
+    @media (min-width: 760px){
+      .footer-inner{
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+      }
+    }
+
+    .mini-brand{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .mini-logo{
+      width: 34px; height: 34px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(79,108,127,.12), rgba(79,108,127,.05));
+      display: grid; place-items: center;
+      box-shadow: 0 6px 18px rgba(26,26,26,.05);
+    }
+    .mini-logo svg{ width: 20px; height: 20px; opacity: .9; }
+
+    .social{
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .social a{
+      width: 38px; height: 38px;
+      border-radius: 14px;
+      border: 1px solid rgba(26,26,26,.10);
+      background: #fff;
+      display: grid; place-items: center;
+      box-shadow: 0 1px 0 rgba(26,26,26,.02);
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+      outline: none;
+    }
+    .social a:hover{ transform: translateY(-1px); box-shadow: var(--shadow-soft); border-color: rgba(26,26,26,.16); }
+    .social a:active{ transform: translateY(0px) scale(.99); }
+    .social a:focus-visible{ box-shadow: 0 0 0 4px var(--ring), var(--shadow-soft); }
+
+    /* Fade-in animation */
+    .reveal{
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .reveal.is-visible{
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .btn, .social a{ transition: none; }
+      .reveal{ opacity: 1; transform: none; transition: none; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="bg-glow" aria-hidden="true"></div>
+
+    <header class="container">
+      <div class="hero reveal">
+        <!-- Logo placeholder (SVG estilizado) -->
+        <div class="logo" aria-label="Logo do canal">
+          <svg viewBox="0 0 64 64" role="img" aria-label="Logo placeholder">
+            <defs>
+              <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#4F6C7F" stop-opacity=".95"/>
+                <stop offset="1" stop-color="#4F6C7F" stop-opacity=".45"/>
+              </linearGradient>
+            </defs>
+            <rect x="10" y="12" width="44" height="40" rx="14" fill="url(#g)" opacity=".25"/>
+            <path d="M22 37c0-7 5.8-13 13-13 5.6 0 10.4 3.5 12.2 8.4"
+                  fill="none" stroke="url(#g)" stroke-width="3.5" stroke-linecap="round"/>
+            <path d="M23 40c2.8 2.7 6.6 4.4 10.9 4.4 7.3 0 13.2-4.7 14.8-11.2"
+                  fill="none" stroke="url(#g)" stroke-width="3.5" stroke-linecap="round" opacity=".9"/>
+            <circle cx="22" cy="41" r="2.5" fill="#4F6C7F" opacity=".85"/>
+            <circle cx="48" cy="32" r="2.5" fill="#4F6C7F" opacity=".6"/>
+          </svg>
+        </div>
+
+        <h1 id="channelName">Nome do Canal</h1>
+        <p class="tagline">As melhores ofertas, direto no seu bolso</p>
+        <p class="desc">
+          Receba promoções e cupons selecionados com carinho — rápido, prático e sem bagunça.
+        </p>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- Links -->
+      <section class="section card links reveal" aria-labelledby="linksTitle">
+        <div class="links-header">
+          <h2 id="linksTitle">Entre agora</h2>
+          <p class="hint">Escolha sua plataforma preferida</p>
+        </div>
+
+        <div class="grid" role="list">
+          <!-- WhatsApp -->
+          <a class="btn wa" role="listitem" href="https://example.com/whatsapp" target="_blank" rel="noopener noreferrer"
+             aria-label="Entrar no WhatsApp (abre em nova aba)">
+            <div class="left">
+              <div class="icon" aria-hidden="true">
+                <i data-lucide="message-circle"></i>
+              </div>
+              <div class="label">
+                <strong>Entrar no WhatsApp</strong>
+                <span>Canal de ofertas • atualizações diárias</span>
+              </div>
+            </div>
+            <i class="chev" data-lucide="chevron-right" aria-hidden="true"></i>
+          </a>
+
+          <!-- Telegram -->
+          <a class="btn tg" role="listitem" href="https://example.com/telegram" target="_blank" rel="noopener noreferrer"
+             aria-label="Entrar no Telegram (abre em nova aba)">
+            <div class="left">
+              <div class="icon" aria-hidden="true">
+                <i data-lucide="send"></i>
+              </div>
+              <div class="label">
+                <strong>Entrar no Telegram</strong>
+                <span>Alertas rápidos • links diretos</span>
+              </div>
+            </div>
+            <i class="chev" data-lucide="chevron-right" aria-hidden="true"></i>
+          </a>
+
+          <!-- Discord -->
+          <a class="btn dc" role="listitem" href="https://example.com/discord" target="_blank" rel="noopener noreferrer"
+             aria-label="Entrar no Discord (abre em nova aba)">
+            <div class="left">
+              <div class="icon" aria-hidden="true">
+                <i data-lucide="messages-square"></i>
+              </div>
+              <div class="label">
+                <strong>Entrar no Discord</strong>
+                <span>Comunidade • categorias por tema</span>
+              </div>
+            </div>
+            <i class="chev" data-lucide="chevron-right" aria-hidden="true"></i>
+          </a>
+
+          <!-- Instagram -->
+          <a class="btn ig" role="listitem" href="https://example.com/instagram" target="_blank" rel="noopener noreferrer"
+             aria-label="Seguir no Instagram (abre em nova aba)">
+            <div class="left">
+              <div class="icon" aria-hidden="true">
+                <i data-lucide="camera"></i>
+              </div>
+              <div class="label">
+                <strong>Seguir no Instagram</strong>
+                <span>Stories • destaques • novidades</span>
+              </div>
+            </div>
+            <i class="chev" data-lucide="chevron-right" aria-hidden="true"></i>
+          </a>
+        </div>
+      </section>
+
+      <!-- Benefícios -->
+      <section class="section card benefits reveal" aria-labelledby="benefitsTitle">
+        <h3 id="benefitsTitle">Por que seguir?</h3>
+
+        <div class="benefit-grid">
+          <div class="benefit">
+            <div class="b-ico" aria-hidden="true"><i data-lucide="sparkles"></i></div>
+            <p><strong>Ofertas diárias</strong><br/>Achados novos todos os dias.</p>
+          </div>
+
+          <div class="benefit">
+            <div class="b-ico" aria-hidden="true"><i data-lucide="ticket"></i></div>
+            <p><strong>Cupons exclusivos</strong><br/>Descontos que somam no final.</p>
+          </div>
+
+          <div class="benefit">
+            <div class="b-ico" aria-hidden="true"><i data-lucide="shield-check"></i></div>
+            <p><strong>Sem spam</strong><br/>Só o que vale a pena.</p>
+          </div>
+
+          <div class="benefit">
+            <div class="b-ico" aria-hidden="true"><i data-lucide="badge-check"></i></div>
+            <p><strong>100% grátis</strong><br/>Entrou, aproveitou, pronto.</p>
+          </div>
+        </div>
+      </section>
+
+      <footer class="container">
+        <div class="footer-inner">
+          <div class="mini-brand">
+            <div class="mini-logo" aria-hidden="true">
+              <!-- mini logo (reaproveita o mesmo estilo) -->
+              <svg viewBox="0 0 64 64" role="img" aria-label="Logo do canal">
+                <path d="M20 34c0-7 5.8-13 13-13 5.6 0 10.4 3.5 12.2 8.4"
+                      fill="none" stroke="#4F6C7F" stroke-width="4" stroke-linecap="round" opacity=".9"/>
+                <circle cx="21" cy="38" r="3" fill="#4F6C7F" opacity=".7"/>
+              </svg>
+            </div>
+            <div>
+              <div style="font-weight:600; color: var(--text);" id="footerChannelName">Nome do Canal</div>
+              <div style="font-size:12px;">© 2025 <span id="footerYearName">Nome do Canal</span> • Todos os direitos reservados</div>
+            </div>
+          </div>
+
+          <nav class="social" aria-label="Redes sociais">
+            <a class="wa" href="https://example.com/whatsapp" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+              <i data-lucide="message-circle" aria-hidden="true"></i>
+            </a>
+            <a class="tg" href="https://example.com/telegram" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
+              <i data-lucide="send" aria-hidden="true"></i>
+            </a>
+            <a class="dc" href="https://example.com/discord" target="_blank" rel="noopener noreferrer" aria-label="Discord">
+              <i data-lucide="messages-square" aria-hidden="true"></i>
+            </a>
+            <a class="ig" href="https://example.com/instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <i data-lucide="camera" aria-hidden="true"></i>
+            </a>
+          </nav>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    // ====== CONFIG RÁPIDA ======
+    // Troque aqui sem caçar no HTML todo:
+    const CONFIG = {
+      channelName: "Nome do Canal",
+      links: {
+        whatsapp: "https://example.com/whatsapp",
+        telegram: "https://example.com/telegram",
+        discord: "https://example.com/discord",
+        instagram: "https://example.com/instagram",
+      }
+    };
+
+    // Aplicar nome do canal
+    const channelNameEl = document.getElementById("channelName");
+    const footerChannelNameEl = document.getElementById("footerChannelName");
+    const footerYearNameEl = document.getElementById("footerYearName");
+    [channelNameEl, footerChannelNameEl, footerYearNameEl].forEach(el => el && (el.textContent = CONFIG.channelName));
+
+    // Aplicar links (mantendo a11y e rel)
+    const map = {
+      "Entrar no WhatsApp": CONFIG.links.whatsapp,
+      "Entrar no Telegram": CONFIG.links.telegram,
+      "Entrar no Discord": CONFIG.links.discord,
+      "Seguir no Instagram": CONFIG.links.instagram
+    };
+
+    // Atualiza hrefs dos botões principais e do footer
+    document.querySelectorAll('a.btn').forEach(a => {
+      const title = a.querySelector('.label strong')?.textContent?.trim();
+      if (title && map[title]) a.href = map[title];
+    });
+    const footerAnchors = document.querySelectorAll('footer .social a');
+    footerAnchors.forEach(a => {
+      const label = (a.getAttribute('aria-label') || "").toLowerCase();
+      if (label.includes('whatsapp')) a.href = CONFIG.links.whatsapp;
+      if (label.includes('telegram')) a.href = CONFIG.links.telegram;
+      if (label.includes('discord')) a.href = CONFIG.links.discord;
+      if (label.includes('instagram')) a.href = CONFIG.links.instagram;
+    });
+
+    // Ícones (Lucide)
+    window.addEventListener("DOMContentLoaded", () => {
+      if (window.lucide && typeof window.lucide.createIcons === "function") {
+        window.lucide.createIcons({ attrs: { "stroke-width": 2 } });
+      }
+
+      // Fade-in / reveal on load + on scroll
+      const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const items = document.querySelectorAll(".reveal");
+
+      if (prefersReduced) {
+        items.forEach(el => el.classList.add("is-visible"));
+        return;
+      }
+
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      items.forEach((el) => io.observe(el));
+    });
+  </script>
+</body>
+</html>

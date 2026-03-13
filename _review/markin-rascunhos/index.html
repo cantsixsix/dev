@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="As melhores ofertas e promoções, direto no seu bolso.">
+    <title>PromoZap | As melhores ofertas</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ================= VARIABLES & RESET ================= */
+        :root {
+            --bg-color: #FAFAFA;
+            --surface-color: #FFFFFF;
+            --text-main: #1A1A1A;
+            --text-muted: #666666;
+            --accent-color: #64748B; /* Azul acinzentado sutil */
+            
+            /* Brand Colors */
+            --whatsapp: #25D366;
+            --telegram: #0088cc;
+            --discord: #5865F2;
+            --instagram: #E1306C; /* Cor base, gradiente aplicado direto no elemento */
+            
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.05);
+            --shadow-hover: 0 10px 15px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 600px;
+            margin: 0 auto;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 40px 0;
+        }
+
+        /* ================= ANIMATIONS ================= */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ================= HERO SECTION ================= */
+        .hero {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .hero-logo {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 16px;
+            background: var(--surface-color);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-sm);
+            color: var(--accent-color);
+        }
+
+        .hero h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .hero h2 {
+            font-size: 1.125rem;
+            font-weight: 500;
+            color: var(--accent-color);
+            margin-bottom: 8px;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            max-width: 90%;
+            margin: 0 auto;
+        }
+
+        /* ================= LINKS SECTION ================= */
+        .links {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .link-card {
+            background-color: var(--surface-color);
+            padding: 18px 24px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            align-items: center;
+            transition: var(--transition);
+            border: 1px solid rgba(0,0,0,0.02);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .link-card:hover, .link-card:focus {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+            outline: none;
+            border-color: rgba(0,0,0,0.05);
+        }
+
+        .link-icon {
+            font-size: 1.5rem;
+            margin-right: 16px;
+            width: 32px;
+            text-align: center;
+        }
+
+        .link-text {
+            font-size: 1.05rem;
+            font-weight: 600;
+        }
+
+        /* Cores Específicas das Plataformas */
+        .whatsapp .link-icon { color: var(--whatsapp); }
+        .telegram .link-icon { color: var(--telegram); }
+        .discord .link-icon { color: var(--discord); }
+        .instagram .link-icon {
+            background: -webkit-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* ================= BENEFITS SECTION ================= */
+        .benefits {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            text-align: center;
+            background: var(--surface-color);
+            padding: 24px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .benefit-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .benefit-item i {
+            color: var(--accent-color);
+            font-size: 1.25rem;
+        }
+
+        .benefit-item span {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        /* ================= FOOTER ================= */
+        footer {
+            text-align: center;
+            padding: 32px 0;
+            margin-top: auto;
+        }
+
+        .footer-logo {
+            width: 32px;
+            height: 32px;
+            margin: 0 auto 16px;
+            color: var(--accent-color);
+        }
+
+        .social-mini {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .social-mini a {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .social-mini a:hover {
+            color: var(--text-main);
+            transform: scale(1.1);
+        }
+
+        .copyright {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* ================= MEDIA QUERIES (DESKTOP) ================= */
+        @media (min-width: 768px) {
+            .links {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .benefits {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .container {
+                max-width: 700px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header class="hero fade-in">
+            <div class="hero-logo">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+                    <line x1="7" y1="7" x2="7.01" y2="7"></line>
+                </svg>
+            </div>
+            <h1>PromoZap</h1>
+            <h2>As melhores ofertas, direto no seu bolso</h2>
+            <p>Selecionamos a dedo os maiores descontos e bugs da internet para você economizar todos os dias.</p>
+        </header>
+
+        <section class="links fade-in" style="transition-delay: 0.1s;">
+            <a href="#" class="link-card whatsapp" aria-label="Entrar no WhatsApp">
+                <i class="fa-brands fa-whatsapp link-icon"></i>
+                <span class="link-text">Entrar no WhatsApp</span>
+            </a>
+            
+            <a href="#" class="link-card telegram" aria-label="Entrar no Telegram">
+                <i class="fa-brands fa-telegram link-icon"></i>
+                <span class="link-text">Entrar no Telegram</span>
+            </a>
+
+            <a href="#" class="link-card discord" aria-label="Entrar no Discord">
+                <i class="fa-brands fa-discord link-icon"></i>
+                <span class="link-text">Entrar no Discord</span>
+            </a>
+
+            <a href="#" class="link-card instagram" aria-label="Seguir no Instagram">
+                <i class="fa-brands fa-instagram link-icon"></i>
+                <span class="link-text">Seguir no Instagram</span>
+            </a>
+        </section>
+
+        <section class="benefits fade-in" style="transition-delay: 0.2s;">
+            <div class="benefit-item">
+                <i class="fa-solid fa-calendar-check"></i>
+                <span>Ofertas diárias</span>
+            </div>
+            <div class="benefit-item">
+                <i class="fa-solid fa-ticket"></i>
+                <span>Cupons exclusivos</span>
+            </div>
+            <div class="benefit-item">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span>Sem spam</span>
+            </div>
+            <div class="benefit-item">
+                <i class="fa-solid fa-gift"></i>
+                <span>100% grátis</span>
+            </div>
+        </section>
+    </div>
+
+    <footer class="fade-in" style="transition-delay: 0.3s;">
+        <div class="footer-logo">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+                <line x1="7" y1="7" x2="7.01" y2="7"></line>
+            </svg>
+        </div>
+        
+        <div class="social-mini">
+            <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="#" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+            <a href="#" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+        
+        <p class="copyright">© 2026 PromoZap • Todos os direitos reservados</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in').forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>
