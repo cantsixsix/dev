@@ -1,6 +1,6 @@
 # Análise dos repositórios — cantsixsix
 
-> **Atualização:** a organização agora é por ideias — ver **[IDEIAS.md](IDEIAS.md)**. `kies`, `Finance-`, `mega-repo` e `joguinho-` deixaram de ser "apagar" e viraram ideias a validar; `voxel` mantém o nome; `assetsv1` e `aassmetnsv-2` serão apagados.
+> **Atualização:** a organização agora é por ideias — ver **[IDEIAS.md](IDEIAS.md)**. `kies`, `Finance-`, `mega-repo` e `joguinho-` deixaram de ser "apagar" e viraram ideias a validar; `voxel`, `assetsv1` e `aassmetnsv-2` serão apagados.
 
 Revisão feita em 09/10/2026, olhando o conteúdo de cada repo (último commit da branch padrão).
 Renomear no GitHub: *Settings → General → Repository name*. O GitHub redireciona o nome antigo, então links e clones continuam funcionando.
@@ -98,7 +98,7 @@ Mesmo projeto (hub de 20 mini-apps + AI gateway); `mega-repo` é a versão mais 
 | `todo-list` | `tarefas` | renomear |
 | `calendario` | `calendario-android` | renomear |
 | `mistico` | `mistico-android` | renomear + limpar binários/chaves |
-| `voxel` | — | corrigir chave |
+| `voxel` | — | apagar (revogar a chave do Gemini antes) |
 | `corrida` | `corrida-3d` | renomear + reduzir mp3 |
 | `wpp-navegador-wrapper` | `whatsapp-desktop-wsl` | renomear |
 | `Beaqme` + `myloja` | `beaqme-site` | juntar |
