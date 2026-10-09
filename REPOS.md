@@ -5,6 +5,23 @@
 Revisão feita em 09/10/2026, olhando o conteúdo de cada repo (último commit da branch padrão).
 Renomear no GitHub: *Settings → General → Repository name*. O GitHub redireciona o nome antigo, então links e clones continuam funcionando.
 
+## ✅ Já feito (09/10/2026)
+
+| Repo | O que mudou |
+|---|---|
+| todos | `IDEIA.md` com a ficha da ideia + workflow **Segredos** (bloqueia `.env`, keystore, chaves) |
+| `corrida` | Música de 53 MB → 5,5 MB (6 min em loop), README de verdade |
+| `joguinho-` | Virou projeto Vite que roda (`npm run dev`); botão Start que não clicava foi corrigido |
+| `Beaqme` | Removidos os 4 arquivos-lixo do terminal |
+| `investing` | Código movido de `test/agora.py` para `agora.py`; `requirements.txt` e README |
+| `calendario` | `.codex` removido; CI Android corrigido (pacote `tools` saiu do SDK) |
+| `wpp-navegador-wrapper` | `.claude/settings.local.json` fora do Git |
+| `aquatrack` | README corrigido (Next 16; Stripe ainda não implementado) |
+| `dotfiles` | Hook `git-hooks/pre-commit` que bloqueia segredos no seu computador |
+| `dev` | Painel automático de ideias (`PAINEL.md`, toda segunda) |
+
+**Continua pendente (só você pode fazer):** apagar `assetsv1`, `aassmetnsv-2`, `voxel`; revogar a chave do Gemini; resetar a upload key do Místico e tirar a keystore do `mistico` (o workflow Segredos de lá vai ficar vermelho até isso); gerar novas credenciais do Mercado Livre.
+
 ## 🚨 Prioridade 1 — segurança
 
 | Repo | Problema | O que fazer |
