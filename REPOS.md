@@ -1,5 +1,7 @@
 # Análise dos repositórios — cantsixsix
 
+> **Atualização:** a organização agora é por ideias — ver **[IDEIAS.md](IDEIAS.md)**. `kies`, `Finance-`, `mega-repo` e `joguinho-` deixaram de ser "apagar" e viraram ideias a validar; `voxel` mantém o nome; `assetsv1` e `aassmetnsv-2` serão apagados.
+
 Revisão feita em 09/10/2026, olhando o conteúdo de cada repo (último commit da branch padrão).
 Renomear no GitHub: *Settings → General → Repository name*. O GitHub redireciona o nome antigo, então links e clones continuam funcionando.
 
@@ -39,8 +41,8 @@ Só contém o pacote TWA (wrapper Android do site) gerado pelo PWABuilder, não 
 - O TWA abre `dainty-alfajores-b56885.netlify.app`, mas o site listado no repo é `mistico-drab.vercel.app`. Confirmar qual é o domínio de verdade e alinhar (inclusive o `assetlinks.json`).
 - Onde está o código do site? Se não estiver no GitHub, criar `mistico-web`.
 
-**`voxel` → `toy-destruction`**
-O próprio `metadata.json` chama o app de "Toy Destruction". Além da chave exposta (acima): README tem só uma linha ("primiero teste do vexel app").
+**`voxel`** (mantém o nome)
+Além da chave exposta (acima): README tem só uma linha ("primiero teste do vexel app").
 
 **`corrida` → `corrida-3d`**
 Jogo de corrida em React + Three.js, deploy Vercel.
@@ -96,20 +98,20 @@ Mesmo projeto (hub de 20 mini-apps + AI gateway); `mega-repo` é a versão mais 
 | `todo-list` | `tarefas` | renomear |
 | `calendario` | `calendario-android` | renomear |
 | `mistico` | `mistico-android` | renomear + limpar binários/chaves |
-| `voxel` | `toy-destruction` | renomear + corrigir chave |
+| `voxel` | — | corrigir chave |
 | `corrida` | `corrida-3d` | renomear + reduzir mp3 |
 | `wpp-navegador-wrapper` | `whatsapp-desktop-wsl` | renomear |
 | `Beaqme` + `myloja` | `beaqme-site` | juntar |
 | `saas-landing-template` | `link-in-bio-template` | renomear |
 | `Mundo_infinito` | `sistema-solar-3d` | renomear |
 | `startup-portfolio-20apps` | — | manter |
-| `mega-repo` | — | arquivar (duplicado) |
-| `assetsv1` / `aassmetnsv-2` | um só, privado | juntar |
-| `joguinho-` | — | mover p/ corrida e apagar |
+| `mega-repo` | — | vira a plataforma (ver IDEIAS.md) |
+| `assetsv1` / `aassmetnsv-2` | — | apagar |
+| `joguinho-` | — | ideia própria (mundo aberto) |
 | `autoPreenchimmento` | — | privado ou apagar |
 | `investing` | `investing` | corrigir arquivos vazios |
 | `dev` | `rascunhos` (opcional) | limpar |
-| `kies`, `Finance-` | — | apagar |
+| `kies`, `Finance-` | — | ideias a validar |
 | `aquatrack`, `dotfiles`, `promotech-landing` | — | manter |
 
-De 23 repos → ~15, todos com nome claro, descrição e README.
+Todos os repos ficam, exceto os dois `assets*`; cada um representa uma ideia (ver IDEIAS.md).

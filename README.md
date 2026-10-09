@@ -29,7 +29,8 @@ Remover os arquivos num commit novo **não basta**: eles continuam no histórico
 
 ## Organização dos demais repositórios
 
-Análise detalhada, repo por repo, com nomes sugeridos: **[REPOS.md](REPOS.md)**.
+- **[IDEIAS.md](IDEIAS.md)** — todos os projetos organizados como ideias a validar, por categoria.
+- **[REPOS.md](REPOS.md)** — análise técnica repo por repo (segurança, limpeza, nomes).
 
 ### Padrões gerais
 - Todo repo com: descrição no GitHub, `README.md`, `.gitignore` (nunca `.env`, keystore, `node_modules`, builds).
