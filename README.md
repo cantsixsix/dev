@@ -29,29 +29,9 @@ Remover os arquivos num commit novo **não basta**: eles continuam no histórico
 
 ## Organização dos demais repositórios
 
-Inventário de `cantsixsix` (out/2026). Sugestão de ação para cada um:
-
-### Manter (projetos com conteúdo/deploy)
-| Repo | Linguagem | Observação |
-|---|---|---|
-| `mistico` | Java | App tarot/horóscopo, deploy Vercel. Receber os assets do `_archive` |
-| `corrida` | JavaScript | Deploy Vercel. 53 MB — checar se há build/`node_modules` commitado |
-| `voxel` | TypeScript | Deploy Vercel |
-| `aquatrack` | TypeScript | Único privado |
-| `calendario` | Java | Projeto mais recente |
-| `Beaqme`, `Mundo_infinito`, `myloja`, `investing`, `wpp-navegador-wrapper`, `dotfiles` | vários | Adicionar README e descrição |
-
-### Consolidar
-| Repos | Sugestão |
-|---|---|
-| `promotech-landing`, `saas-landing-template`, `startup-portfolio-20apps`, `mega-repo` | Landing pages/templates HTML — juntar num repo `landing-pages` com uma pasta por página (ou manter separados só os que têm deploy) |
-| `assetsv1`, `aassmetnsv-2` | Duas versões do mesmo conteúdo — manter uma (`assets`) e arquivar a outra |
-| `joguinho-`, `autoPreenchimmento` | Muito pequenos — mover para uma pasta `experimentos/` aqui ou arquivar |
-
-### Apagar ou arquivar (vazios)
-`kies`, `Finance-`, `todo-list` — 0 KB, sem código.
+Análise detalhada, repo por repo, com nomes sugeridos: **[REPOS.md](REPOS.md)**.
 
 ### Padrões gerais
 - Todo repo com: descrição no GitHub, `README.md`, `.gitignore` (nunca `.env`, keystore, `node_modules`, builds).
-- Nomes em minúsculo com hífen, sem erros de digitação (`autoPreenchimmento` → `auto-preenchimento`, `aassmetnsv-2` → apagar).
+- Nomes em minúsculo com hífen, sem erros de digitação.
 - Projetos com segredos ou dados de clientes → privados.
