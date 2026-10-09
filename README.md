@@ -31,6 +31,18 @@ Remover os arquivos num commit novo **não basta**: eles continuam no histórico
 
 - **[IDEIAS.md](IDEIAS.md)** — todos os projetos organizados como ideias a validar, por categoria.
 - **[REPOS.md](REPOS.md)** — análise técnica repo por repo (segurança, limpeza, nomes).
+- **[PAINEL.md](PAINEL.md)** — estado de cada ideia, gerado automaticamente (ver abaixo).
+
+## Automações
+
+| O quê | Onde | Quando |
+|---|---|---|
+| **Painel de ideias** — lê o `IDEIA.md` de todos os repos, monta o `PAINEL.md`, marca ideias paradas há 14+ dias e repos sem ficha | `.github/workflows/painel.yml` + `scripts/painel.py` | Toda segunda 09:07 (Brasília) ou manual em *Actions → Painel de ideias → Run workflow* |
+| **Segredos** — falha se houver `.env`, keystore, chave privada ou senha no código (gitleaks) | `.github/workflows/segredos.yml` em **todos** os repos | Em cada push e pull request |
+| **Hook local** — bloqueia o commit no seu computador antes de subir | `dotfiles/git-hooks/pre-commit` | Em cada `git commit` (instalar: `git config --global core.hooksPath ~/dotfiles/git-hooks`) |
+
+Para mudar o estágio de uma ideia, edite o emoji no título dentro do `IDEIA.md` do repo dela (💡 → 🧪 → 🚀 → ✅, ou 🗄️). O painel acompanha na próxima execução.
+Para o painel incluir repos privados (como `aquatrack`), crie um token pessoal com leitura de repositórios e salve como secret `PAINEL_TOKEN` neste repo.
 
 ### Padrões gerais
 - Todo repo com: descrição no GitHub, `README.md`, `.gitignore` (nunca `.env`, keystore, `node_modules`, builds).
