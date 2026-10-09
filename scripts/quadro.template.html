@@ -1,0 +1,266 @@
+<title>Bancada de Ideias</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: bancada de laboratório — resumo do funil no topo, fichas de ideia em grade, cada ficha abre o experimento dela. */
+:root{
+  --bg:#f3f5f4; --card:#ffffff; --ink:#14201c; --muted:#56655f; --line:#d9e0dc;
+  --accent:#0f6b5c; --accent-soft:#e1efeb; --accent-ink:#ffffff;
+  --st-nao:#8a958f; --st-test:#b7791f; --st-ok:#15803d; --st-arq:#9b2c2c;
+  --display:"Familjen Grotesk",ui-sans-serif,system-ui,sans-serif;
+  --body:"Atkinson Hyperlegible",ui-sans-serif,system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0e1513; --card:#16201d; --ink:#e6eeea; --muted:#9aaba4; --line:#26332f;
+  --accent:#4fd1b5; --accent-soft:#163a33; --accent-ink:#06201a;
+  --st-nao:#7d8a85; --st-test:#e0a948; --st-ok:#4ade80; --st-arq:#f08a8a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0e1513; --card:#16201d; --ink:#e6eeea; --muted:#9aaba4; --line:#26332f;
+  --accent:#4fd1b5; --accent-soft:#163a33; --accent-ink:#06201a;
+  --st-nao:#7d8a85; --st-test:#e0a948; --st-ok:#4ade80; --st-arq:#f08a8a; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:16px/1.5 var(--body)}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:16px;padding-block:32px 64px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0}
+h1{font-size:clamp(28px,4.5vw,40px);letter-spacing:-.01em}
+.lede{color:var(--muted);max-width:62ch;margin:8px 0 0}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.top{display:grid;gap:20px;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);align-items:start;margin-bottom:28px}
+@media (max-width:860px){.top{grid-template-columns:minmax(0,1fr)}}
+.funil{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.funil div{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.funil b{display:block;font:600 26px/1 var(--display)}
+.funil span{font-size:13px;color:var(--muted)}
+.passos{background:var(--accent-soft);border-radius:12px;padding:16px 18px}
+.passos h2{font-size:17px;margin-bottom:8px}
+.passos ol{margin:0;padding-left:20px;display:grid;gap:6px}
+.barra{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 16px}
+.chip{font:inherit;font-size:14px;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:6px 12px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.chip:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,textarea:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.busca{flex:1 1 220px;min-width:0;font:inherit;padding:7px 12px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink)}
+.grade{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+.ficha{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px;min-width:0;border-top:4px solid var(--st,var(--st-nao))}
+.cab{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.id{font:500 13px var(--mono);color:var(--muted)}
+.ficha h3{font-size:19px}
+.pitch{margin:0}
+.meta-l{display:flex;flex-wrap:wrap;gap:6px;font-size:13px;color:var(--muted)}
+.meta-l span{border:1px solid var(--line);border-radius:6px;padding:1px 7px}
+.status{font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--st,var(--st-nao))}
+details{border-top:1px solid var(--line);padding-top:8px}
+summary{cursor:pointer;font-weight:700;font-size:14px;color:var(--accent)}
+dl{margin:8px 0 0;display:grid;gap:8px}
+dt{font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+dd{margin:0}
+.exp{background:var(--bg);border-radius:10px;padding:12px;display:grid;gap:8px;font-size:14px}
+.exp a{color:var(--accent);word-break:break-all}
+.campos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.campos label{display:grid;gap:3px;font-size:12px;color:var(--muted)}
+.campos .full{grid-column:1/-1}
+input[type=number],select,textarea,.cfg input{font:inherit;font-size:14px;width:100%;padding:7px 9px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--ink)}
+textarea{resize:vertical;min-height:52px}
+.salvo{font-size:12px;color:var(--muted);min-height:1em}
+.aviso{background:var(--card);border:1px dashed var(--line);border-radius:10px;padding:10px 12px;font-size:14px;color:var(--muted);margin-bottom:16px}
+.cfg{display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:14px;margin-bottom:16px}
+.cfg input{flex:1 1 260px;min-width:0}
+.cfg button{font:inherit;font-size:14px;font-weight:700;border:0;border-radius:8px;padding:8px 14px;background:var(--accent);color:var(--accent-ink);cursor:pointer}
+.vazio{color:var(--muted);padding:24px 0}
+@media (prefers-reduced-motion:no-preference){.ficha{transition:border-color .2s}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>Bancada de Ideias</h1>
+      <p class="lede">Cada ficha explica uma ideia em linguagem simples e traz o teste mais rápido para saber se vale continuar. Anote os resultados aqui; ficam salvos para você e para o Claude ler depois.</p>
+    </div>
+    <section class="passos" aria-label="Como validar">
+      <h2>Como validar em 7 dias</h2>
+      <ol>
+        <li>Abra a landing da ideia e poste o link no canal indicado.</li>
+        <li>Espere 7 dias. Conte inscrições e cliques em “Eu pagaria isso”.</li>
+        <li>Bateu a meta → <b>Validada</b>. Não bateu → <b>Arquivada</b>. Sem meio-termo.</li>
+      </ol>
+    </section>
+  </header>
+
+  <div class="funil" id="funil" aria-live="polite"></div>
+  <div style="height:20px"></div>
+
+  <div class="cfg" id="cfg">
+    <label for="base">Endereço das landings:</label>
+    <input id="base" type="url" placeholder="https://seu-site.netlify.app (preencha depois de publicar)">
+    <button id="salvar-base" type="button">Salvar</button>
+  </div>
+  <p class="aviso" id="aviso" hidden></p>
+
+  <div class="barra" role="toolbar" aria-label="Filtrar">
+    <input class="busca" id="busca" type="search" placeholder="Buscar ideia, público, problema…" aria-label="Buscar">
+    <span id="chips-area"></span>
+    <span id="chips-status"></span>
+  </div>
+
+  <div class="grade" id="grade"></div>
+  <p class="vazio" id="vazio" hidden>Nenhuma ideia com esse filtro.</p>
+</div>
+
+<script>
+const IDEIAS = __IDEIAS__;
+const STATUS = {nao:{t:"Não começou",c:"var(--st-nao)"},testando:{t:"Testando",c:"var(--st-test)"},validada:{t:"Validada",c:"var(--st-ok)"},arquivada:{t:"Arquivada",c:"var(--st-arq)"}};
+const TIPO = {landing:"Landing + lista de espera",conteudo:"Post de conteúdo com link",conversa:"Conversar com 3–5 clientes",uso:"Colocar pessoas usando"};
+const res = {};            // resultados por id, vindos do db
+let base = "";             // endereço das landings
+let db = null, podeEscrever = true;
+const filtro = {area:"Todas", status:"todos", q:""};
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function r(id){ return res[id] || {}; }
+function statusDe(id){ return r(id).status || "nao"; }
+
+function renderFunil(){
+  const n = {nao:0,testando:0,validada:0,arquivada:0};
+  IDEIAS.forEach(i => n[statusDe(i.id)]++);
+  $("#funil").innerHTML = Object.entries(STATUS).map(([k,v]) =>
+    `<div style="border-top:3px solid ${v.c}"><b class="mono">${n[k]}</b><span>${v.t}</span></div>`).join("");
+}
+
+function renderChips(){
+  const areas = ["Todas", ...new Set(IDEIAS.map(i => i.area))];
+  $("#chips-area").innerHTML = areas.map(a => `<button class="chip" type="button" data-area="${esc(a)}" aria-pressed="${filtro.area===a}">${esc(a)}</button>`).join(" ");
+  $("#chips-status").innerHTML = [["todos","Qualquer estado"],...Object.entries(STATUS).map(([k,v])=>[k,v.t])]
+    .map(([k,t]) => `<button class="chip" type="button" data-status="${k}" aria-pressed="${filtro.status===k}">${t}</button>`).join(" ");
+}
+
+function link(i){
+  if(!base) return `<span>Landing: <em>publique o site e preencha o endereço acima</em> (pasta <span class="mono">validacao/site/${i.id.toLowerCase()}/</span>)</span>`;
+  const u = base.replace(/\/+$/,"") + "/" + i.id.toLowerCase() + "/";
+  return `<span>Landing: <a href="${esc(u)}" target="_blank" rel="noopener">${esc(u)}</a></span>`;
+}
+
+function ficha(i){
+  const st = statusDe(i.id), x = r(i.id), t = i.teste;
+  const dis = podeEscrever ? "" : "disabled";
+  return `<article class="ficha" data-id="${i.id}" style="--st:${STATUS[st].c}">
+    <div class="cab"><span class="id">${i.id} · ${esc(i.area)}</span><span class="status">${STATUS[st].t}</span></div>
+    <h3>${esc(i.nome)}</h3>
+    <p class="pitch">${esc(i.pitch)}</p>
+    <div class="meta-l"><span>repo ${esc(i.repo)}</span><span>${esc(i.estagio)}</span><span>${esc(t.preco)}</span></div>
+    <details><summary>Entender a ideia</summary><dl>
+      <div><dt>Problema</dt><dd>${esc(i.problema)}</dd></div>
+      <div><dt>Para quem</dt><dd>${esc(i.publico)}</dd></div>
+      <div><dt>Como funciona</dt><dd>${esc(i.como)}</dd></div>
+      <div><dt>Como ganha dinheiro</dt><dd>${esc(i.dinheiro)}</dd></div>
+    </dl></details>
+    <details open><summary>Teste rápido</summary><div class="exp" style="margin-top:8px">
+      <span><b>${TIPO[t.tipo]}</b></span>
+      <span>Onde divulgar: ${esc(t.canal)}</span>
+      <span>Meta: <b>${esc(t.meta)}</b></span>
+      ${link(i)}
+      <div class="campos">
+        <label>Inscrições<input type="number" min="0" inputmode="numeric" id="insc-${i.id}" data-f="inscritos" value="${x.inscritos ?? ""}" ${dis}></label>
+        <label>Cliques “eu pagaria”<input type="number" min="0" inputmode="numeric" id="pag-${i.id}" data-f="pagaria" value="${x.pagaria ?? ""}" ${dis}></label>
+        <label class="full">Estado<select id="st-${i.id}" data-f="status" ${dis}>${Object.entries(STATUS).map(([k,v])=>`<option value="${k}" ${k===st?"selected":""}>${v.t}</option>`).join("")}</select></label>
+        <label class="full">Anotações<textarea id="nota-${i.id}" data-f="notas" placeholder="O que as pessoas disseram, onde postou, data de início…" ${dis}>${esc(x.notas ?? "")}</textarea></label>
+      </div>
+      <span class="salvo" id="salvo-${i.id}">${x.atualizado ? "Salvo em " + new Date(x.atualizado).toLocaleDateString("pt-BR") : ""}</span>
+    </div></details>
+  </article>`;
+}
+
+function visiveis(){
+  const q = filtro.q.toLowerCase();
+  return IDEIAS.filter(i =>
+    (filtro.area==="Todas" || i.area===filtro.area) &&
+    (filtro.status==="todos" || statusDe(i.id)===filtro.status) &&
+    (!q || [i.id,i.nome,i.pitch,i.problema,i.publico,i.area].join(" ").toLowerCase().includes(q)));
+}
+
+function renderGrade(){
+  const v = visiveis();
+  $("#grade").innerHTML = v.map(ficha).join("");
+  $("#vazio").hidden = v.length > 0;
+}
+function renderTudo(){ renderFunil(); renderChips(); renderGrade(); }
+
+// Atualiza só a ficha que mudou, sem perder o foco de quem está digitando em outra.
+function atualizarFicha(id){
+  const el = document.querySelector(`.ficha[data-id="${id}"]`);
+  if(!el || el.contains(document.activeElement)) { renderFunil(); return; }
+  const i = IDEIAS.find(x => x.id===id);
+  const abertos = [...el.querySelectorAll("details")].map(d => d.open);
+  const novo = document.createElement("div"); novo.innerHTML = ficha(i);
+  const f = novo.firstElementChild;
+  f.querySelectorAll("details").forEach((d,k) => d.open = abertos[k]);
+  el.replaceWith(f); renderFunil();
+}
+
+// Salvamento: uma escrita por ficha por pausa.
+const pendente = {}, timers = {};
+function agendar(id, campo, valor){
+  pendente[id] = Object.assign(pendente[id] || {}, {[campo]: valor});
+  clearTimeout(timers[id]);
+  timers[id] = setTimeout(() => salvar(id), 600);
+}
+const gravando = {};
+async function salvar(id){
+  if(!db || gravando[id]) return;
+  const mud = pendente[id]; if(!mud) return;
+  delete pendente[id]; gravando[id] = true;
+  const corpo = Object.assign({}, r(id), mud, {atualizado: new Date().toISOString()});
+  res[id] = corpo;
+  const s = $("#salvo-"+id);
+  try{ await db.collection("resultados").doc(id).set(corpo); if(s) s.textContent = "Salvo"; }
+  catch(e){
+    if(e && e.code==="invalid_argument"){ podeEscrever=false; aviso("Você pode ver o quadro, mas não editar os resultados."); renderGrade(); }
+    else if(s) s.textContent = "Não foi possível salvar agora. Tente de novo em instantes.";
+  }
+  finally{ gravando[id] = false; if(pendente[id]) salvar(id); }
+}
+function aviso(t){ const a=$("#aviso"); a.textContent=t; a.hidden=false; }
+
+document.addEventListener("click", e => {
+  const a = e.target.closest("[data-area]"), s = e.target.closest("[data-status]");
+  if(a){ filtro.area = a.dataset.area; renderChips(); renderGrade(); }
+  if(s){ filtro.status = s.dataset.status; renderChips(); renderGrade(); }
+});
+document.addEventListener("input", e => {
+  const f = e.target.dataset?.f; if(!f) return;
+  const id = e.target.closest(".ficha").dataset.id;
+  let v = e.target.value;
+  if(e.target.type==="number") v = v==="" ? null : Math.max(0, Math.floor(+v));
+  if(f==="status"){ res[id] = Object.assign({}, r(id), {status:v}); const el=e.target.closest(".ficha"); el.style.setProperty("--st", STATUS[v].c); el.querySelector(".status").textContent = STATUS[v].t; renderFunil(); }
+  agendar(id, f, v);
+});
+$("#busca").addEventListener("input", e => { filtro.q = e.target.value; renderGrade(); });
+$("#salvar-base").addEventListener("click", async () => {
+  base = $("#base").value.trim(); renderGrade();
+  if(db && podeEscrever){ try{ await db.doc("config/site").set({base}); }catch(_){} }
+});
+
+renderTudo();
+
+(async () => {
+  try{ db = await window.claude?.use?.("db"); }catch(_){ db = null; }
+  if(!db){ aviso("Os resultados não podem ser salvos nesta visualização. As explicações e os testes continuam aqui para consulta."); podeEscrever=false; renderGrade(); return; }
+  try{
+    const user = await window.claude.use("user");
+    if(user && (await user.can?.("data.write")) === false){ podeEscrever=false; $("#cfg").hidden=true; aviso("Você pode ver o quadro, mas não editar os resultados."); renderGrade(); }
+  }catch(_){}
+  db.doc("config/site").onSnapshot(s => {
+    const b = s.exists ? (s.data().base || "") : "";
+    if(b !== base){ base = b; if(document.activeElement !== $("#base")) $("#base").value = b; renderGrade(); }
+  }, () => {});
+  let primeiro = true;
+  db.collection("resultados").onSnapshot(snap => {
+    if(primeiro){ snap.docs.forEach(d => res[d.id] = d.data()); primeiro=false; renderTudo(); return; }
+    snap.docChanges().forEach(ch => {
+      if(gravando[ch.doc.id] || pendente[ch.doc.id]) return;
+      if(ch.type==="removed") delete res[ch.doc.id]; else res[ch.doc.id] = ch.doc.data();
+      atualizarFicha(ch.doc.id);
+    });
+  }, () => aviso("A conexão com os resultados caiu. Recarregue a página para continuar salvando."));
+})();
+</script>

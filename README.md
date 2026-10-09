@@ -32,6 +32,7 @@ Remover os arquivos num commit novo **não basta**: eles continuam no histórico
 - **[IDEIAS.md](IDEIAS.md)** — todos os projetos organizados como ideias a validar, por categoria.
 - **[REPOS.md](REPOS.md)** — análise técnica repo por repo (segurança, limpeza, nomes).
 - **[PAINEL.md](PAINEL.md)** — estado de cada ideia, gerado automaticamente (ver abaixo).
+- **[validacao/](validacao/README.md)** — explicação simples de cada ideia, uma landing de teste por ideia e a [Bancada de Ideias](https://claude.ai/artifact/Y4H9MCxyvwwLDmhL812znj) para anotar resultados.
 
 ## Automações
 

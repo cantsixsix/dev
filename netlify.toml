@@ -1,0 +1,4 @@
+# Publica as landings de validação (validacao/site) com os formulários da Netlify.
+[build]
+  command = "python3 scripts/gerar_landings.py"
+  publish = "validacao/site"

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BrandForge</title><meta name="description" content="Cores, fontes, tom de voz e modelos de post — gerados a partir da descrição do seu negócio.">
+<link rel="stylesheet" href="../estilo.css"></head>
+<body><main>
+<span class="tag">Em breve</span>
+<h1>A identidade visual do seu negócio em minutos</h1>
+<p class="sub">Cores, fontes, tom de voz e modelos de post — gerados a partir da descrição do seu negócio.</p>
+<div class="grid">
+  <div class="box"><h2>O problema</h2><p>Pequeno negócio começa sem identidade visual e designer é caro.</p></div>
+  <div class="box"><h2>Como funciona</h2><p>Você descreve o negócio; a IA gera paleta, tipografia, tom de voz e modelos de post.</p></div>
+</div>
+<form name="lista-de-espera" method="POST" data-netlify="true" netlify-honeypot="bot">
+  <input type="hidden" name="form-name" value="lista-de-espera">
+  <input type="hidden" name="ideia" value="A8">
+  <input type="hidden" name="quer-pagar" id="quer-pagar" value="nao">
+  <p class="hide"><label>Não preencha <input name="bot"></label></p>
+  <input type="email" name="email" required placeholder="seu@email.com" aria-label="Seu e-mail">
+  <button type="submit">Quero minha marca</button>
+</form>
+<p class="ok">Pronto! Você está na lista e vai ser avisado primeiro. 🙌</p>
+<div class="preco"><span>Preço previsto: <strong>R$ 97 por kit</strong></span>
+  <button type="button" class="ghost" id="btn-preco">Eu pagaria isso</button></div>
+<p id="aviso-preco" class="hide" style="color:var(--muted)">Obrigado! Ainda não estamos cobrando — deixe seu e-mail acima e você garante o preço de lançamento.</p>
+<footer>BrandForge · ideia A8</footer>
+</main><script>
+const f=document.querySelector('form[name=lista-de-espera]');
+const pago=document.getElementById('quer-pagar');
+document.getElementById('btn-preco')?.addEventListener('click',()=>{
+  pago.value='sim';
+  document.getElementById('aviso-preco').classList.remove('hide');
+  f.querySelector('input[type=email]').focus();
+});
+f.addEventListener('submit',async ev=>{
+  ev.preventDefault();
+  const dados=new URLSearchParams(new FormData(f)).toString();
+  try{await fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:dados});}catch(_){}
+  f.classList.add('hide');document.querySelector('.ok').style.display='block';
+});
+</script></body></html>

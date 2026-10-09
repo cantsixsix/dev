@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PriceRadar</title><meta name="description" content="Monitoramento diário de preços com alerta e sugestão de preço ideal.">
+<link rel="stylesheet" href="../estilo.css"></head>
+<body><main>
+<span class="tag">Em breve</span>
+<h1>Saiba na hora quando o concorrente baixar o preço</h1>
+<p class="sub">Monitoramento diário de preços com alerta e sugestão de preço ideal.</p>
+<div class="grid">
+  <div class="box"><h2>O problema</h2><p>Lojista pequeno perde venda porque não percebe que o concorrente baixou o preço.</p></div>
+  <div class="box"><h2>Como funciona</h2><p>Você cadastra os produtos dos concorrentes; ele checa os preços todo dia e manda alerta.</p></div>
+</div>
+<form name="lista-de-espera" method="POST" data-netlify="true" netlify-honeypot="bot">
+  <input type="hidden" name="form-name" value="lista-de-espera">
+  <input type="hidden" name="ideia" value="V4">
+  <input type="hidden" name="quer-pagar" id="quer-pagar" value="nao">
+  <p class="hide"><label>Não preencha <input name="bot"></label></p>
+  <input type="email" name="email" required placeholder="seu@email.com" aria-label="Seu e-mail">
+  <button type="submit">Quero monitorar meus concorrentes</button>
+</form>
+<p class="ok">Pronto! Você está na lista e vai ser avisado primeiro. 🙌</p>
+<div class="preco"><span>Preço previsto: <strong>R$ 79/mês</strong></span>
+  <button type="button" class="ghost" id="btn-preco">Eu pagaria isso</button></div>
+<p id="aviso-preco" class="hide" style="color:var(--muted)">Obrigado! Ainda não estamos cobrando — deixe seu e-mail acima e você garante o preço de lançamento.</p>
+<footer>PriceRadar · ideia V4</footer>
+</main><script>
+const f=document.querySelector('form[name=lista-de-espera]');
+const pago=document.getElementById('quer-pagar');
+document.getElementById('btn-preco')?.addEventListener('click',()=>{
+  pago.value='sim';
+  document.getElementById('aviso-preco').classList.remove('hide');
+  f.querySelector('input[type=email]').focus();
+});
+f.addEventListener('submit',async ev=>{
+  ev.preventDefault();
+  const dados=new URLSearchParams(new FormData(f)).toString();
+  try{await fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:dados});}catch(_){}
+  f.classList.add('hide');document.querySelector('.ok').style.display='block';
+});
+</script></body></html>

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LaunchPad</title><meta name="description" content="Cada pessoa ganha um link de indicação e sobe na fila ao convidar amigos.">
+<link rel="stylesheet" href="../estilo.css"></head>
+<body><main>
+<span class="tag">Em breve</span>
+<h1>Uma lista de espera que se espalha sozinha</h1>
+<p class="sub">Cada pessoa ganha um link de indicação e sobe na fila ao convidar amigos.</p>
+<div class="grid">
+  <div class="box"><h2>O problema</h2><p>Lançar produto sem público; lista de espera comum não se espalha.</p></div>
+  <div class="box"><h2>Como funciona</h2><p>Página de lista de espera com link de indicação e ranking.</p></div>
+</div>
+<form name="lista-de-espera" method="POST" data-netlify="true" netlify-honeypot="bot">
+  <input type="hidden" name="form-name" value="lista-de-espera">
+  <input type="hidden" name="ideia" value="V8">
+  <input type="hidden" name="quer-pagar" id="quer-pagar" value="nao">
+  <p class="hide"><label>Não preencha <input name="bot"></label></p>
+  <input type="email" name="email" required placeholder="seu@email.com" aria-label="Seu e-mail">
+  <button type="submit">Quero lançar com lista de espera</button>
+</form>
+<p class="ok">Pronto! Você está na lista e vai ser avisado primeiro. 🙌</p>
+<div class="preco"><span>Preço previsto: <strong>R$ 99 por lançamento</strong></span>
+  <button type="button" class="ghost" id="btn-preco">Eu pagaria isso</button></div>
+<p id="aviso-preco" class="hide" style="color:var(--muted)">Obrigado! Ainda não estamos cobrando — deixe seu e-mail acima e você garante o preço de lançamento.</p>
+<footer>LaunchPad · ideia V8</footer>
+</main><script>
+const f=document.querySelector('form[name=lista-de-espera]');
+const pago=document.getElementById('quer-pagar');
+document.getElementById('btn-preco')?.addEventListener('click',()=>{
+  pago.value='sim';
+  document.getElementById('aviso-preco').classList.remove('hide');
+  f.querySelector('input[type=email]').focus();
+});
+f.addEventListener('submit',async ev=>{
+  ev.preventDefault();
+  const dados=new URLSearchParams(new FormData(f)).toString();
+  try{await fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:dados});}catch(_){}
+  f.classList.add('hide');document.querySelector('.ok').style.display='block';
+});
+</script></body></html>

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Finance — finanças pessoais</title><meta name="description" content="Anote um gasto em 3 segundos e veja o resumo do mês sem planilha.">
+<link rel="stylesheet" href="../estilo.css"></head>
+<body><main>
+<span class="tag">Em breve</span>
+<h1>Descubra para onde vai seu dinheiro</h1>
+<p class="sub">Anote um gasto em 3 segundos e veja o resumo do mês sem planilha.</p>
+<div class="grid">
+  <div class="box"><h2>O problema</h2><p>Planilha dá preguiça e app de banco não mostra o todo. A pessoa chega no fim do mês sem saber o que aconteceu.</p></div>
+  <div class="box"><h2>Como funciona</h2><p>Registro rápido de gasto (valor + categoria), orçamento por categoria e resumo mensal.</p></div>
+</div>
+<form name="lista-de-espera" method="POST" data-netlify="true" netlify-honeypot="bot">
+  <input type="hidden" name="form-name" value="lista-de-espera">
+  <input type="hidden" name="ideia" value="F1">
+  <input type="hidden" name="quer-pagar" id="quer-pagar" value="nao">
+  <p class="hide"><label>Não preencha <input name="bot"></label></p>
+  <input type="email" name="email" required placeholder="seu@email.com" aria-label="Seu e-mail">
+  <button type="submit">Quero organizar meu dinheiro</button>
+</form>
+<p class="ok">Pronto! Você está na lista e vai ser avisado primeiro. 🙌</p>
+<div class="preco"><span>Preço previsto: <strong>R$ 9,90/mês (casal)</strong></span>
+  <button type="button" class="ghost" id="btn-preco">Eu pagaria isso</button></div>
+<p id="aviso-preco" class="hide" style="color:var(--muted)">Obrigado! Ainda não estamos cobrando — deixe seu e-mail acima e você garante o preço de lançamento.</p>
+<footer>Finance — finanças pessoais · ideia F1</footer>
+</main><script>
+const f=document.querySelector('form[name=lista-de-espera]');
+const pago=document.getElementById('quer-pagar');
+document.getElementById('btn-preco')?.addEventListener('click',()=>{
+  pago.value='sim';
+  document.getElementById('aviso-preco').classList.remove('hide');
+  f.querySelector('input[type=email]').focus();
+});
+f.addEventListener('submit',async ev=>{
+  ev.preventDefault();
+  const dados=new URLSearchParams(new FormData(f)).toString();
+  try{await fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:dados});}catch(_){}
+  f.classList.add('hide');document.querySelector('.ok').style.display='block';
+});
+</script></body></html>

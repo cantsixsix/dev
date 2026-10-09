@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LoveWall</title><meta name="description" content="Peça depoimentos por link, receba em vídeo ou texto e exiba num mural no seu site.">
+<link rel="stylesheet" href="../estilo.css"></head>
+<body><main>
+<span class="tag">Em breve</span>
+<h1>Transforme clientes felizes em vendas</h1>
+<p class="sub">Peça depoimentos por link, receba em vídeo ou texto e exiba num mural no seu site.</p>
+<div class="grid">
+  <div class="box"><h2>O problema</h2><p>Depoimentos ficam perdidos em prints de WhatsApp e nunca chegam no site.</p></div>
+  <div class="box"><h2>Como funciona</h2><p>Você manda um link ao cliente, ele grava/escreve o depoimento, e o mural aparece no seu site.</p></div>
+</div>
+<form name="lista-de-espera" method="POST" data-netlify="true" netlify-honeypot="bot">
+  <input type="hidden" name="form-name" value="lista-de-espera">
+  <input type="hidden" name="ideia" value="V7">
+  <input type="hidden" name="quer-pagar" id="quer-pagar" value="nao">
+  <p class="hide"><label>Não preencha <input name="bot"></label></p>
+  <input type="email" name="email" required placeholder="seu@email.com" aria-label="Seu e-mail">
+  <button type="submit">Quero meu mural</button>
+</form>
+<p class="ok">Pronto! Você está na lista e vai ser avisado primeiro. 🙌</p>
+<div class="preco"><span>Preço previsto: <strong>R$ 39/mês</strong></span>
+  <button type="button" class="ghost" id="btn-preco">Eu pagaria isso</button></div>
+<p id="aviso-preco" class="hide" style="color:var(--muted)">Obrigado! Ainda não estamos cobrando — deixe seu e-mail acima e você garante o preço de lançamento.</p>
+<footer>LoveWall · ideia V7</footer>
+</main><script>
+const f=document.querySelector('form[name=lista-de-espera]');
+const pago=document.getElementById('quer-pagar');
+document.getElementById('btn-preco')?.addEventListener('click',()=>{
+  pago.value='sim';
+  document.getElementById('aviso-preco').classList.remove('hide');
+  f.querySelector('input[type=email]').focus();
+});
+f.addEventListener('submit',async ev=>{
+  ev.preventDefault();
+  const dados=new URLSearchParams(new FormData(f)).toString();
+  try{await fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:dados});}catch(_){}
+  f.classList.add('hide');document.querySelector('.ok').style.display='block';
+});
+</script></body></html>
