@@ -4,3 +4,14 @@ node_modules/
 __pycache__/
 *.pyc
 .DS_Store
+
+# Segredos e chaves — nunca commitar
+*.keystore
+*.jks
+signing-key-info.txt
+
+# Builds e binários
+build/
+dist/
+*.apk
+*.aab
