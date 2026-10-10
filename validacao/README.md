@@ -8,12 +8,15 @@ Tudo parte de **`ideias.json`**: para cada ideia, o problema, o público, como f
 | `site/` | Uma landing por ideia (`site/a3/`, `site/p1/`…), com lista de espera e botão **“Eu pagaria isso”**. Gerado por `scripts/gerar_landings.py`. |
 | `quadro.html` | A **Bancada de Ideias** (publicada como Artifact): explica cada ideia e guarda os resultados. Gerado por `scripts/gerar_quadro.py`. |
 
-## Colocar as landings no ar (uma vez, ~5 minutos)
+## Colocar as landings no ar (1 minuto)
 
-1. Entre em [app.netlify.com](https://app.netlify.com) → **Add new site → Import an existing project** → escolha o repo `dev` (branch `main`, depois de juntar esta branch). O `netlify.toml` já diz o que publicar.
-   *Alternativa sem Git:* rode `python3 scripts/gerar_landings.py` e arraste a pasta `validacao/site` para app.netlify.com/drop.
-2. Na Netlify, em **Forms**, ative a detecção de formulários e faça um novo deploy.
-3. Copie o endereço do site (ex.: `https://ideias-cantsixsix.netlify.app`) e cole no campo **Endereço das landings** da Bancada. Cada ficha passa a mostrar o link da sua landing.
+O site **validar-ideias** já foi criado na sua conta da Netlify, com os formulários ativados, e a Bancada já aponta para `https://validar-ideias.netlify.app`. Falta só subir os arquivos:
+
+1. Abra https://app.netlify.com/projects/validar-ideias/deploys
+2. Arraste a pasta `validacao/site` (deste repo) para a área **“Drag and drop your project folder here”**.
+3. Pronto: `https://validar-ideias.netlify.app/p3/`, `/a3/` etc. ficam no ar, e as inscrições aparecem em **Forms → lista-de-espera**.
+
+Depois de juntar esta branch na `main`, você pode trocar o passo 2 por deploy automático: *Project configuration → Build & deploy → Link repository* → repo `dev`. O `netlify.toml` já diz o que publicar.
 
 ## Rodar um teste
 

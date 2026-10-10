@@ -54,7 +54,7 @@ Micro-SaaS de hidratação (Next.js + Supabase).
 - **S1.c Bem-estar corporativo** — desafio de hidratação por equipe, painel para RH. *Teste:* oferecer para 1 empresa.
 - **S1.d Lembrete via WhatsApp** — sem app, só mensagens (combina com P4).
 
-### S2 · Health Pro — `Beaqme/new/cases/health-pro.html`, `tools/health.html` 💡
+### S2 · Health Pro — `Beaqme/health.html` (app), `new/cases/health-pro.html` 🧪
 - **S2.a Painel de hábitos** — sono, água, exercício num lugar só (S1 vira um módulo).
 - **S2.b Diário de sintomas** — para levar ao médico.
 
